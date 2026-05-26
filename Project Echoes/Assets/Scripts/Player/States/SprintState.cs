@@ -23,7 +23,7 @@ public class SprintState : IState
         playerMovement.Move(playerInput.MoveInput, 6f);
         playerStamina.ConsumeStamina();
 
-        if(playerInput.IsSprinting == false || playerStamina.canSprint == false)
+        if(playerInput.IsSprinting == false || playerStamina.CanSprint == false)
         {
             if (playerInput.IsCrouching)
             {

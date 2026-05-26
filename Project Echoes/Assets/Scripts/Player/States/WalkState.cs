@@ -24,7 +24,7 @@ public class WalkState : IState
         playerMovement.Move(playerInput.MoveInput, 3.5f);
         playerStamina.RegenerateStamina();
 
-        if (playerInput.IsSprinting && playerStamina.canSprint)
+        if (playerInput.IsSprinting && playerStamina.CanSprint)
         {
             playerState.ChangeState(new SprintState(playerState, playerMovement, playerInput, playerStamina));
         }
