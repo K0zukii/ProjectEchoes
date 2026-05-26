@@ -430,6 +430,7 @@ GameObject:
   - component: {fileID: 1305137923}
   - component: {fileID: 1305137925}
   - component: {fileID: 1305137924}
+  - component: {fileID: 1305137926}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -632,8 +633,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerLook
   playerCam: {fileID: 322325160}
   playerInput: {fileID: 1305137923}
-  sensitivity: 1
+  sensitivity: 0.1
   smoothTime: 0.05
+--- !u!114 &1305137926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305137918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34c6ca9352d295f46956f97935dd8864, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStamina
+  maxStamina: 100
+  drainRate: 15
+  regenRate: 10
+  timeBeforeRegen: 3
+  sprintThreshold: 20
 --- !u!1 &1486824618
 GameObject:
   m_ObjectHideFlags: 0
