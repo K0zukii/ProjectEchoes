@@ -10,6 +10,7 @@ public class PlayerStateMachine : MonoBehaviour
     private IState _currentState;
     private PlayerMovement playerMovement;
     private PlayerInputHandler playerInput;
+    private PlayerStamina playerStamina;
     
     public void ChangeState(IState newState)
     {
@@ -21,8 +22,9 @@ public class PlayerStateMachine : MonoBehaviour
     {
         playerMovement = GetComponent<PlayerMovement>();
         playerInput = GetComponent<PlayerInputHandler>();
+        playerStamina = GetComponent<PlayerStamina>();
         
-        ChangeState(new WalkState(this, playerMovement, playerInput));
+        ChangeState(new WalkState(this, playerMovement, playerInput, playerStamina));
     }
 
     void Update()
