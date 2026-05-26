@@ -1,16 +1,32 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
+
+[RequireComponent(typeof(PlayerMovement))]
+
+[RequireComponent(typeof(PlayerInput))]
 public class PlayerStateMachine : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private IState _currentState;
+    private PlayerMovement playerMovement;
+    private PlayerInputHandler playerInput;
+    
+    public void ChangeState(IState newState)
+    {
+        _currentState?.ExitState();
+        _currentState = newState;
+        newState.OnEnterState();
+    }
     void Start()
     {
+        playerMovement = GetComponent<PlayerMovement>();
+        playerInput = GetComponent<PlayerInputHandler>();
         
+        ChangeState(new WalkState(this, playerMovement, playerInput));
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        _currentState.UpdateState();
     }
 }
