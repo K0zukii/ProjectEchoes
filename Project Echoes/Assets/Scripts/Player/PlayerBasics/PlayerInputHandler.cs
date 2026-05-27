@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerInputHandler : MonoBehaviour
@@ -6,6 +7,8 @@ public class PlayerInputHandler : MonoBehaviour
     public Vector2 LookInput {get; private set;}
     public bool IsSprinting {get; private set;}
     public bool IsCrouching {get; private set;}
+
+    public event Action OnFlashlightChanged;
 
     public void Move(InputAction.CallbackContext context)
     {
@@ -25,5 +28,13 @@ public class PlayerInputHandler : MonoBehaviour
     public void OnCrouch(InputAction.CallbackContext context)
     {
         IsCrouching = context.ReadValueAsButton();
+    }
+
+    public void OnFlashlight(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            OnFlashlightChanged?.Invoke();
+        }
     }
 }

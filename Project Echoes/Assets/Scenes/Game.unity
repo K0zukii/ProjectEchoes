@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 301281198}
   - component: {fileID: 301281200}
   m_Layer: 5
-  m_Name: Image
+  m_Name: SprintBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -598,8 +598,9 @@ GameObject:
   - component: {fileID: 1305137921}
   - component: {fileID: 1305137923}
   - component: {fileID: 1305137925}
-  - component: {fileID: 1305137924}
   - component: {fileID: 1305137926}
+  - component: {fileID: 1305137924}
+  - component: {fileID: 1305137927}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -783,6 +784,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 17c12754-f3fc-4ec5-bbe1-a5db3c482729
     m_ActionName: 'Gameplay/Sprint[/Keyboard/leftShift,/DualSenseGamepadHID1/leftStickPress]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1305137923}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnFlashlight
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e905862b-021a-471b-84af-1ad729b8242a
+    m_ActionName: 'Gameplay/ToggleFlashlight[/Keyboard/f,/DualSenseGamepadHID/rightStickPress]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: 
@@ -820,6 +837,23 @@ MonoBehaviour:
   regenRate: 10
   timeBeforeRegen: 4
   sprintThreshold: 20
+--- !u!114 &1305137927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305137918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e51192ff06ebf246915625cf97e5f9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlashLightController
+  flashlight: {fileID: 1486824621}
+  maxBattery: 100
+  drainRate: 0.5
+  regenRate: 5
+  _currentBattery: 0
 --- !u!1 &1486824618
 GameObject:
   m_ObjectHideFlags: 0
@@ -837,7 +871,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1486824619
 Transform:
   m_ObjectHideFlags: 0
@@ -847,7 +881,7 @@ Transform:
   m_GameObject: {fileID: 1486824618}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.7, z: 0}
+  m_LocalPosition: {x: 0, y: -0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
