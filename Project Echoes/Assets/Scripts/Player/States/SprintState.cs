@@ -16,7 +16,7 @@ public class SprintState : IState
     }
     public void OnEnterState()
     {
-        Debug.Log("Etat Actif : Course");
+        
     }
     public void UpdateState()
     {

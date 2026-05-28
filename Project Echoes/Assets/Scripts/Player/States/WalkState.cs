@@ -17,7 +17,7 @@ public class WalkState : IState
 
     public void OnEnterState()
     {
-        Debug.Log("Etat Actif : Marche");
+        
     }
     public void UpdateState()
     {

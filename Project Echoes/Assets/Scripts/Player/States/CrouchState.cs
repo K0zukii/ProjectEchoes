@@ -17,7 +17,6 @@ public class CrouchState : IState
     public void OnEnterState()
     {
         playerMovement.SetCrouchHeight();
-        Debug.Log("Etat Actif : Accroupis");
     }
     public void UpdateState()
     {

@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -595,6 +595,117 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 422468843}
   m_CullTransparentMesh: 1
+--- !u!1001 &798417669
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 48ef92da56d04e6489ae6ae6dd2b6547, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.812
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 48ef92da56d04e6489ae6ae6dd2b6547, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.36
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 48ef92da56d04e6489ae6ae6dd2b6547, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.06
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 48ef92da56d04e6489ae6ae6dd2b6547, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 48ef92da56d04e6489ae6ae6dd2b6547, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 48ef92da56d04e6489ae6ae6dd2b6547, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 48ef92da56d04e6489ae6ae6dd2b6547, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 48ef92da56d04e6489ae6ae6dd2b6547, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 48ef92da56d04e6489ae6ae6dd2b6547, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 48ef92da56d04e6489ae6ae6dd2b6547, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 48ef92da56d04e6489ae6ae6dd2b6547, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ec1df9ba1ca9b3b438e5f53e80b661c3, type: 2}
+    - target: {fileID: 919132149155446097, guid: 48ef92da56d04e6489ae6ae6dd2b6547, type: 3}
+      propertyPath: m_Name
+      value: Battery
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 48ef92da56d04e6489ae6ae6dd2b6547, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 48ef92da56d04e6489ae6ae6dd2b6547, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 798417671}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 48ef92da56d04e6489ae6ae6dd2b6547, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 798417675}
+  m_SourcePrefab: {fileID: 100100000, guid: 48ef92da56d04e6489ae6ae6dd2b6547, type: 3}
+--- !u!1 &798417670 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 48ef92da56d04e6489ae6ae6dd2b6547, type: 3}
+  m_PrefabInstance: {fileID: 798417669}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &798417671
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798417670}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0017598988, y: 0.001023368, z: 0.0033509189}
+  m_Center: {x: 0.00043250056, y: 0, z: -0.0014733084}
+--- !u!114 &798417675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798417670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d1a24a4bf7034346aafd1f3aaa29afd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BatteryPickup
+  regenAmount: 25
+  playerFlashlight: {fileID: 1305137927}
 --- !u!1 &893593343
 GameObject:
   m_ObjectHideFlags: 0
@@ -1110,6 +1221,7 @@ GameObject:
   - component: {fileID: 1305137925}
   - component: {fileID: 1305137926}
   - component: {fileID: 1305137927}
+  - component: {fileID: 1305137928}
   - component: {fileID: 1305137924}
   m_Layer: 0
   m_Name: Player
@@ -1311,10 +1423,14 @@ MonoBehaviour:
     m_ActionId: e905862b-021a-471b-84af-1ad729b8242a
     m_ActionName: 'Gameplay/ToggleFlashlight[/Keyboard/f,/DualSenseGamepadHID/rightStickPress]'
   - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c025a21b-cb40-423b-b6c7-109ab52a1cf0
+    m_ActionName: 'Gameplay/GetBattery[/Keyboard/b]'
+  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1305137923}
         m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
-        m_MethodName: OnBatteryCheat
+        m_MethodName: OnInteraction
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1324,8 +1440,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: c025a21b-cb40-423b-b6c7-109ab52a1cf0
-    m_ActionName: 'Gameplay/GetBattery[/Keyboard/b]'
+    m_ActionId: e458d32a-e742-4c28-97fb-d79d600dda8b
+    m_ActionName: 'Gameplay/Interact[/Keyboard/e,/DualSenseGamepadHID/buttonWest]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: 
@@ -1381,9 +1497,26 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   maxBattery: 100
-  drainRate: 0.5
+  drainRate: 2
   regenRate: 5
   _currentBattery: 0
+--- !u!114 &1305137928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305137918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca125865438c29e409767f77e3f727dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInteraction
+  playerCam: {fileID: 322325160}
+  interactRange: 3
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &1486824618
 GameObject:
   m_ObjectHideFlags: 0
@@ -1721,6 +1854,7 @@ RectTransform:
   m_Children:
   - {fileID: 301281197}
   - {fileID: 50705636}
+  - {fileID: 2128286601}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1728,6 +1862,98 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &2128286600
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2128286601}
+  - component: {fileID: 2128286603}
+  - component: {fileID: 2128286602}
+  - component: {fileID: 2128286604}
+  m_Layer: 5
+  m_Name: Crosshair
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2128286601
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128286600}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2108839887}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 5, y: 5}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2128286602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128286600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 7482667652216324306, guid: 41de09b3f12b9bc42affc59e1d1269c5, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &2128286603
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128286600}
+  m_CullTransparentMesh: 1
+--- !u!114 &2128286604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128286600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aa78953221b03642bb6d94b56ca4b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CrosshairUI
+  playerInteraction: {fileID: 1305137928}
+  normalSize: 1
+  hoverSize: 2
+  animationSpeed: 20
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1738,3 +1964,4 @@ SceneRoots:
   - {fileID: 2108839887}
   - {fileID: 1080043685}
   - {fileID: 1263786851}
+  - {fileID: 798417669}
