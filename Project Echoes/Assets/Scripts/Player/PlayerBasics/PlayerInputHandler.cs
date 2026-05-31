@@ -10,7 +10,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     public event Action OnFlashlightChanged;
     public event Action IsInteracting;
-
+    public event Action IsThrowing;
     public void Move(InputAction.CallbackContext context)
     {
         MoveInput = context.ReadValue<Vector2>();
@@ -44,6 +44,14 @@ public class PlayerInputHandler : MonoBehaviour
         if (context.started)
         {
             IsInteracting?.Invoke();
+        }
+    }
+
+    public void OnThrowing(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            IsThrowing?.Invoke();
         }
     }
 }

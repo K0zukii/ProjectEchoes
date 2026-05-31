@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     void DecreaseGenerator()
     {
         genRemaining--;
+        Debug.Log("Generateur desactive ! Generateur restant : " + genRemaining);
         
         if(genRemaining <= 0)
         {
