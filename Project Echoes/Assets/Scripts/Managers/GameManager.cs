@@ -2,15 +2,28 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] private int totalGenerators = 3;
+    private int genRemaining;
+
     void Start()
     {
-        
+        genRemaining = totalGenerators;
+
+        GameEvents.OnTerminalActivated += DecreaseGenerator;
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnDisable()
     {
+        GameEvents.OnTerminalActivated -= DecreaseGenerator;
+    }
+
+    void DecreaseGenerator()
+    {
+        genRemaining--;
         
+        if(genRemaining <= 0)
+        {
+            Debug.Log("Porte deverouille, echappe toi vite !");
+        }
     }
 }

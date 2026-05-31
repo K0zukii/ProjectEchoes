@@ -1,16 +1,29 @@
 using UnityEngine;
 
-public class TerminalLogic : MonoBehaviour
+public class TerminalLogic : MonoBehaviour, IInteractable
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private AudioSource genSound;
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField] private GameObject zoneLightsParent;
+    private bool isActivated;
+    public void Interact()
     {
-        
+        if (isActivated) return;
+
+        isActivated = true;
+
+        if(zoneLightsParent != null)
+        {
+            zoneLightsParent.SetActive(false);
+        }
+
+        GameEvents.FireOnTerminalActivated();
+
+        if (genSound != null)
+        {
+            genSound.Stop();
+        }
+
+        Debug.Log("Générateur éteint ! La zone locale est dans le noir.");
     }
 }

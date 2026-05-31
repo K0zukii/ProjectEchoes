@@ -23,4 +23,9 @@ public static class GameEvents
     {
         OnGameOver?.Invoke();
     }
+    public static event Action OnTerminalActivated;
+    public static void FireOnTerminalActivated()
+    {
+        OnTerminalActivated?.Invoke();
+    }
 }
