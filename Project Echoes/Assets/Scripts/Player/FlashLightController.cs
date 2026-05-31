@@ -24,7 +24,6 @@ public class FlashLightController : MonoBehaviour
     {
         playerInput = GetComponent<PlayerInputHandler>();
         playerInput.OnFlashlightChanged += ToggleFlashlight;
-        playerInput.OnCheatActivated += AddBattery;
 
         flashlight.enabled = isFlashlightOn;
         _currentBattery = maxBattery;
@@ -81,7 +80,6 @@ public class FlashLightController : MonoBehaviour
         if (playerInput != null)
         {
             playerInput.OnFlashlightChanged -= ToggleFlashlight;
-            playerInput.OnCheatActivated -= AddBattery;
         }
     }
 }

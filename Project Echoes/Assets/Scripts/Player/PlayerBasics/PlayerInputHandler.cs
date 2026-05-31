@@ -9,8 +9,8 @@ public class PlayerInputHandler : MonoBehaviour
     public bool IsCrouching {get; private set;}
 
     public event Action OnFlashlightChanged;
-    public event Action<float> OnCheatActivated;
-
+    public event Action IsInteracting;
+    public event Action IsThrowing;
     public void Move(InputAction.CallbackContext context)
     {
         MoveInput = context.ReadValue<Vector2>();
@@ -39,11 +39,19 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
-    public void OnBatteryCheat(InputAction.CallbackContext context)
+    public void OnInteraction(InputAction.CallbackContext context)
     {
         if (context.started)
         {
-            OnCheatActivated?.Invoke(25f);
+            IsInteracting?.Invoke();
+        }
+    }
+
+    public void OnThrowing(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            IsThrowing?.Invoke();
         }
     }
 }

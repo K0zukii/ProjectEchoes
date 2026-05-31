@@ -52,9 +52,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "GetBattery",
+                    "name": "Interact",
                     "type": "Button",
-                    "id": "c025a21b-cb40-423b-b6c7-109ab52a1cf0",
+                    "id": "e458d32a-e742-4c28-97fb-d79d600dda8b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Throw",
+                    "type": "Button",
+                    "id": "671aa1c2-18ec-4c8c-8051-a183b6aef093",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -218,12 +227,45 @@
                 },
                 {
                     "name": "",
-                    "id": "d42c97c3-f399-4125-91d7-1486550f1fbe",
-                    "path": "<Keyboard>/b",
+                    "id": "0c6b100d-83f0-46e9-acee-5100cb8467d0",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "GetBattery",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c115b70b-bd8d-4e97-bf4c-9b2acdcf7532",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8a69d7fe-9ce2-4bb6-82d0-7e1d6260862f",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Throw",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0194886b-b49f-492f-8eee-35d70abc3dda",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Throw",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
