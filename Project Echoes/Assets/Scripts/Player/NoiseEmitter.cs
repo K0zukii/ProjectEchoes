@@ -2,15 +2,34 @@ using UnityEngine;
 
 public class NoiseEmitter : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private LayerMask enemieLayer;
+    [SerializeField] private LayerMask obstacleLayer;
+    [SerializeField] private AudioSource collisionAudio;
+    public void EmitNoise(float radius)
     {
+        Collider[] overlapResults = Physics.OverlapSphere(transform.position, radius, enemieLayer);
+
+        for (int i = 0; i < overlapResults.Length; i++)
+        {
+            if (overlapResults.Length > 0 && !Physics.Raycast(transform.position, overlapResults[i].transform.position - transform.position, Vector3.Distance(transform.position, overlapResults[i].transform.position), obstacleLayer))
+            {
+                GameEvents.FireOnNoiseEmiteed(transform.position);
+            }
+        }
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PlaySound(bool state, float pitch)
     {
-        
+        collisionAudio.pitch = pitch;
+        if (state == true && !collisionAudio.isPlaying)
+        {
+            collisionAudio.Stop();
+            collisionAudio.Play();
+        }
+        else if (state == false)
+        {
+            collisionAudio.Stop();
+        }
     }
 }
