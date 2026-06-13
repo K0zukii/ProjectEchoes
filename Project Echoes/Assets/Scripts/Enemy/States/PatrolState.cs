@@ -1,16 +1,27 @@
 using UnityEngine;
 
-public class PatrolState : MonoBehaviour
+public class PatrolState : IState
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private EnemyStateMachine _enemyState;
+    private EnemyNavigation _enemyNavigation;
+    public PatrolState(EnemyStateMachine enemyStateMachine, EnemyNavigation enemyNavigation)
+    {
+        _enemyState = enemyStateMachine;
+        _enemyNavigation = enemyNavigation;
+    }
+
+    public void OnEnterState()
+    {
+        Debug.Log("L'IA EST EN PATROL STATE !");
+    }
+
+    public void UpdateState()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ExitState()
     {
-        
+        Debug.Log("L'IA QUITTE LE PATROL STATE !");
     }
 }

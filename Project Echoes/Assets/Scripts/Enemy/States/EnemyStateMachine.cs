@@ -1,16 +1,28 @@
 using UnityEngine;
 
+[RequireComponent(typeof(EnemyNavigation))]
 public class EnemyStateMachine : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private IState _currentState;
+    private EnemyNavigation enemyMovement;
+
+    public void ChangeState(IState newState)
     {
-        
+        _currentState?.ExitState();
+        _currentState = newState;
+        newState.OnEnterState();
     }
 
-    // Update is called once per frame
+    void Start()
+    {
+        enemyMovement = GetComponent<EnemyNavigation>();
+        
+        ChangeState(new PatrolState(this, enemyMovement));
+    }
+
+
     void Update()
     {
-        
+        _currentState.UpdateState();
     }
 }
