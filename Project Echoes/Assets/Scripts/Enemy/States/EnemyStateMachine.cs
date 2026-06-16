@@ -1,10 +1,12 @@
 using UnityEngine;
 
 [RequireComponent(typeof(EnemyNavigation))]
+[RequireComponent(typeof(EnemyDetection))]
 public class EnemyStateMachine : MonoBehaviour
 {
     private IState _currentState;
     private EnemyNavigation enemyMovement;
+    private EnemyDetection enemyDetection;
 
     public void ChangeState(IState newState)
     {
@@ -16,8 +18,9 @@ public class EnemyStateMachine : MonoBehaviour
     void Start()
     {
         enemyMovement = GetComponent<EnemyNavigation>();
+        enemyDetection = GetComponent<EnemyDetection>();
         
-        ChangeState(new PatrolState(this, enemyMovement));
+        ChangeState(new SleepState(this, enemyMovement, enemyDetection));
     }
 
 

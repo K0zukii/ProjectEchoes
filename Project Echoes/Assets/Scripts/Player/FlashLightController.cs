@@ -47,7 +47,7 @@ public class FlashLightController : MonoBehaviour
             
             if (Physics.Raycast(playerCam.position, playerCam.forward, out RaycastHit hit, Mathf.Infinity, enemyLayer))
             {
-                GameEvents.FireOnIlluminatingMonster(Time.deltaTime);
+                GameEvents.FireOnIlluminatingMonster(Time.deltaTime, playerCam.transform);
                 Debug.DrawLine(playerCam.position, playerCam.position + playerCam.forward * hit.distance, Color.red);
             }
             else

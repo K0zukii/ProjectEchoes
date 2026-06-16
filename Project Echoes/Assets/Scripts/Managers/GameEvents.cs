@@ -3,15 +3,15 @@ using UnityEngine;
 
 public static class GameEvents
 {
-    public static event Action<float> OnIlluminatingMonster;
-    public static void FireOnIlluminatingMonster(float delta)
+    public static event Action<float, Transform> OnIlluminatingMonster;
+    public static void FireOnIlluminatingMonster(float delta, Transform playerTransform)
     {
-        OnIlluminatingMonster?.Invoke(delta);
+        OnIlluminatingMonster?.Invoke(delta, playerTransform);
     }
-    public static event Action<Vector3> OnNoiseEmitted;
-    public static void FireOnNoiseEmiteed(Vector3 position)
+    public static event Action<Vector3, Transform, float> OnNoiseEmitted;
+    public static void FireOnNoiseEmiteed(Vector3 position, Transform source, float volumeRange)
     {
-        OnNoiseEmitted?.Invoke(position);
+        OnNoiseEmitted?.Invoke(position, source, volumeRange);
     }
     public static event Action OnPlayerCaught;
     public static void FireOnPlayerCaught()
