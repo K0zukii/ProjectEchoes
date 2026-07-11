@@ -5,7 +5,7 @@ public class SleepState : IState
     private EnemyStateMachine _enemyState;
     private EnemyNavigation _enemyNavigation;
     private EnemyDetection _enemyDetection;
-    
+
     public SleepState(EnemyStateMachine enemyStateMachine, EnemyNavigation enemyNavigation, EnemyDetection enemyDetection)
     {
         _enemyState = enemyStateMachine;
@@ -15,6 +15,7 @@ public class SleepState : IState
 
     public void OnEnterState()
     {
+        _enemyDetection.isAsleep = true;
         _enemyNavigation.StopMoving();
     }
 
@@ -28,6 +29,6 @@ public class SleepState : IState
 
     public void ExitState()
     {
-        
+        _enemyDetection.isAsleep = false;
     }
 }

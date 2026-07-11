@@ -6,7 +6,8 @@ public class InvestigateState : IState
     private EnemyStateMachine _enemyState;
     private EnemyNavigation _enemyNavigation;
     private EnemyDetection _enemyDetection;
-    
+    private Vector3 lastKnowPos;
+
     public InvestigateState(EnemyStateMachine enemyStateMachine, EnemyNavigation enemyNavigation, EnemyDetection enemyDetection)
     {
         _enemyState = enemyStateMachine;
@@ -18,7 +19,9 @@ public class InvestigateState : IState
     {
         Debug.Log("L'IA A COMMENCE LE INVESTIGATE STATE !");
         _enemyNavigation.SetSpeed(4.5f);
-        _enemyNavigation.MoveToPosition(_enemyDetection.LastKnownPosition);
+        lastKnowPos = _enemyDetection.LastKnownPosition;
+        _enemyNavigation.MoveToPosition(lastKnowPos);
+        _enemyDetection.IsInvesting = true;
     }
 
     public void UpdateState()
@@ -27,7 +30,7 @@ public class InvestigateState : IState
         {
             _enemyState.ChangeState(new ChaseState(_enemyState, _enemyNavigation, _enemyDetection));
         }
-        if (_enemyNavigation.HasReachedDestination())
+        else if (_enemyNavigation.HasReachedDestination())
         {
             _enemyState.ChangeState(new SearchState(_enemyState, _enemyNavigation, _enemyDetection));
         }
@@ -35,6 +38,7 @@ public class InvestigateState : IState
 
     public void ExitState()
     {
+        _enemyDetection.IsInvesting = false;
         _enemyDetection.ResetNoiseAlert();
     }
 }

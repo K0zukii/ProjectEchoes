@@ -31,9 +31,9 @@ public class CrouchState : IState
         {
             timer -= Time.deltaTime;
             noiseEmitter.PlaySound(true, 0.85f);
-            if(timer <= 0)
+            if (timer <= 0)
             {
-                noiseEmitter.EmitNoise(2f);
+                noiseEmitter.EmitNoise(3f);
                 timer = 0.8f;
             }
         }
@@ -41,7 +41,7 @@ public class CrouchState : IState
         {
             noiseEmitter.PlaySound(false, 0.85f);
         }
-        
+
         if (playerInput.IsCrouching == false)
         {
             if (playerInput.IsSprinting)

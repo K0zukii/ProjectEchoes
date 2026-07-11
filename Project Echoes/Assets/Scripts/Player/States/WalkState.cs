@@ -20,7 +20,7 @@ public class WalkState : IState
 
     public void OnEnterState()
     {
-        
+
     }
     public void UpdateState()
     {
@@ -33,7 +33,7 @@ public class WalkState : IState
             noiseEmitter.PlaySound(true, 1);
             if (timer <= 0)
             {
-                noiseEmitter.EmitNoise(3);
+                noiseEmitter.EmitNoise(10f);
                 timer = 0.6f;
             }
         }
@@ -41,7 +41,7 @@ public class WalkState : IState
         {
             noiseEmitter.PlaySound(false, 1);
         }
-        
+
         if (playerInput.IsSprinting && playerStamina.CanSprint)
         {
             playerState.ChangeState(new SprintState(playerState, playerMovement, playerInput, playerStamina, noiseEmitter));
@@ -51,5 +51,5 @@ public class WalkState : IState
             playerState.ChangeState(new CrouchState(playerState, playerMovement, playerInput, playerStamina, noiseEmitter));
         }
     }
-    public void ExitState() {}
+    public void ExitState() { }
 }

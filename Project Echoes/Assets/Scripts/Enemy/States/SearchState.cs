@@ -5,8 +5,9 @@ public class SearchState : IState
     private EnemyStateMachine _enemyState;
     private EnemyNavigation _enemyNavigation;
     private EnemyDetection _enemyDetection;
-    
-    private float timeBeforePatrol = 8;
+
+    private float timeBeforePatrol = 15f;
+    private float timer = 2f;
     public SearchState(EnemyStateMachine enemyStateMachine, EnemyNavigation enemyNavigation, EnemyDetection enemyDetection)
     {
         _enemyState = enemyStateMachine;
@@ -23,13 +24,13 @@ public class SearchState : IState
 
     public void UpdateState()
     {
-        if (_enemyDetection.HasHeardNoise)
-        {
-            _enemyState.ChangeState(new InvestigateState(_enemyState, _enemyNavigation, _enemyDetection));
-        }
-        else if (_enemyDetection.HasSeenPlayer)
+        if (_enemyDetection.HasSeenPlayer)
         {
             _enemyState.ChangeState(new ChaseState(_enemyState, _enemyNavigation, _enemyDetection));
+        }
+        else if (_enemyDetection.HasHeardNoise)
+        {
+            _enemyState.ChangeState(new InvestigateState(_enemyState, _enemyNavigation, _enemyDetection));
         }
         else
         {
@@ -37,11 +38,27 @@ public class SearchState : IState
             if (timeBeforePatrol <= 0)
             {
                 _enemyState.ChangeState(new PatrolState(_enemyState, _enemyNavigation, _enemyDetection));
-                timeBeforePatrol = 5;
+                timeBeforePatrol = 8;
             }
-            else if(_enemyNavigation.HasReachedDestination())
+            else
             {
-                _enemyNavigation.MoveToPosition(_enemyNavigation.GetRandomDestination(_enemyDetection.LastKnownPosition, 4f));
+                if (!_enemyNavigation.HasReachedDestination())
+                {
+                    return;
+                }
+                else
+                {
+                    _enemyNavigation.StopMoving();
+                    if (timer > 0)
+                    {
+                        timer -= Time.deltaTime;
+                    }
+                    else
+                    {
+                        _enemyNavigation.MoveToPosition(_enemyNavigation.GetRandomDestination(_enemyDetection.LastKnownPosition, 4f));
+                        timer = 3;
+                    }
+                }
             }
         }
     }

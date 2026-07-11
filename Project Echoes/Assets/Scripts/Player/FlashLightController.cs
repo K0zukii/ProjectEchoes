@@ -10,10 +10,11 @@ public class FlashLightController : MonoBehaviour
     [SerializeField] private float maxBattery;
     [SerializeField] private float drainRate;
     [SerializeField] private float regenRate;
+    [SerializeField] private float rayRange = 10f;
     [SerializeField] private float _currentBattery;   // a enleve (juste pour teste)
     public float CurrentBattery
     {
-        get {return _currentBattery;}
+        get { return _currentBattery; }
     }
 
     private bool isFlashlightOn = false;
@@ -41,11 +42,11 @@ public class FlashLightController : MonoBehaviour
             if (_currentBattery <= 0)
             {
                 isFlashlightOn = false;
-                flashlight.enabled = false; 
+                flashlight.enabled = false;
             }
 
-            
-            if (Physics.Raycast(playerCam.position, playerCam.forward, out RaycastHit hit, Mathf.Infinity, enemyLayer))
+
+            if (Physics.Raycast(playerCam.position, playerCam.forward, out RaycastHit hit, rayRange, enemyLayer))
             {
                 GameEvents.FireOnIlluminatingMonster(Time.deltaTime, playerCam.transform);
                 Debug.DrawLine(playerCam.position, playerCam.position + playerCam.forward * hit.distance, Color.red);

@@ -21,7 +21,7 @@ public class SprintState : IState
     }
     public void OnEnterState()
     {
-        
+
     }
     public void UpdateState()
     {
@@ -34,7 +34,7 @@ public class SprintState : IState
             noiseEmitter.PlaySound(true, 1.15f);
             if (timer <= 0)
             {
-                noiseEmitter.EmitNoise(8f);
+                noiseEmitter.EmitNoise(15f);
                 timer = 0.3f;
             }
         }
@@ -42,9 +42,9 @@ public class SprintState : IState
         {
             noiseEmitter.PlaySound(false, 1.15f);
         }
-        
 
-        if(playerInput.IsSprinting == false || playerStamina.CanSprint == false)
+
+        if (playerInput.IsSprinting == false || playerStamina.CanSprint == false)
         {
             if (playerInput.IsCrouching)
             {
@@ -58,6 +58,6 @@ public class SprintState : IState
     }
     public void ExitState()
     {
-        
+
     }
 }

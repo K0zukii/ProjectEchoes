@@ -29,6 +29,7 @@ public class ChaseState : IState
         else if (_enemyNavigation.HasReachedDestination())
         {
             _enemyNavigation.StopMoving();
+            Debug.Log("Player a ete attrape ! L'ia va maintenant ce desactive !");
             GameEvents.FireOnPlayerCaught();
         }
         else

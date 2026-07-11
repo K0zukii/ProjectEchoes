@@ -23,13 +23,13 @@ public class PatrolState : IState
 
     public void UpdateState()
     {
-        if (_enemyDetection.HasHeardNoise)
-        {
-            _enemyState.ChangeState(new InvestigateState(_enemyState, _enemyNavigation, _enemyDetection));
-        }
-        else if (_enemyDetection.HasSeenPlayer)
+        if (_enemyDetection.HasSeenPlayer)
         {
             _enemyState.ChangeState(new ChaseState(_enemyState, _enemyNavigation, _enemyDetection));
+        }
+        else if (_enemyDetection.HasHeardNoise)
+        {
+            _enemyState.ChangeState(new InvestigateState(_enemyState, _enemyNavigation, _enemyDetection));
         }
         else
         {
@@ -55,6 +55,6 @@ public class PatrolState : IState
 
     public void ExitState()
     {
-        
+
     }
 }
