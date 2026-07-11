@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 direction = input.x * transform.right + input.y * transform.forward;
         charController.Move(speed * Time.deltaTime * direction);
+        currentSpeed = speed;
     }
 
     public void SetCrouchHeight()

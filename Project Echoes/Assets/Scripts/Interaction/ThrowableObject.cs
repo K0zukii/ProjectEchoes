@@ -1,6 +1,7 @@
 using UnityEngine;
-
 [RequireComponent(typeof(Rigidbody))]
+
+[RequireComponent(typeof(NoiseEmitter))]
 public class ThrowableObject : MonoBehaviour, IInteractable
 {
     private Rigidbody objectRb;
@@ -43,7 +44,7 @@ public class ThrowableObject : MonoBehaviour, IInteractable
 
     void OnCollisionEnter(Collision collision)
     {
-        noiseEmitter.EmitNoise(10f);
+        noiseEmitter.EmitNoise(20f);
         noiseEmitter.PlaySound(true, 1);
     }
 }
