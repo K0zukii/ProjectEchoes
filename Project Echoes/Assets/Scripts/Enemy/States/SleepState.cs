@@ -23,12 +23,13 @@ public class SleepState : IState
     {
         if (_enemyDetection.Gen2Activated)
         {
-            _enemyState.ChangeState(new PatrolState(_enemyState, _enemyNavigation, _enemyDetection));
+            _enemyState.ChangeState(new ExitRoomState(_enemyState, _enemyNavigation, _enemyDetection));
         }
     }
 
     public void ExitState()
     {
         _enemyDetection.isAsleep = false;
+        _enemyNavigation.MoveToPosition(new Vector3((float)-2.4840467, (float)0.100000024, (float)-35.3687172));
     }
 }

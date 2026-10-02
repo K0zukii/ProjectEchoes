@@ -11,7 +11,7 @@ public class FlashLightController : MonoBehaviour
     [SerializeField] private float drainRate;
     [SerializeField] private float regenRate;
     [SerializeField] private float rayRange = 10f;
-    [SerializeField] private float _currentBattery;   // a enleve (juste pour teste)
+    [SerializeField] private float _currentBattery;
     public float CurrentBattery
     {
         get { return _currentBattery; }
@@ -21,15 +21,43 @@ public class FlashLightController : MonoBehaviour
     private PlayerInputHandler playerInput;
     public event Action<float> OnBatteryChanged;
 
-    void Start()
+    void Awake()
     {
         playerInput = GetComponent<PlayerInputHandler>();
-        playerInput.OnFlashlightChanged += ToggleFlashlight;
+    }
 
+    void OnEnable()
+    {
+        if (playerInput != null)
+        {
+            playerInput.OnFlashlightChanged += ToggleFlashlight;
+        }
+
+        GameEvents.OnPlayerCaught += OnDeath;
+        GameEvents.OnGameWon += OnDeath;
+    }
+
+    void OnDisable()
+    {
+        if (playerInput != null)
+        {
+            playerInput.OnFlashlightChanged -= ToggleFlashlight;
+        }
+        GameEvents.OnPlayerCaught -= OnDeath;
+        GameEvents.OnGameWon -= OnDeath;
+    }
+
+    void Start()
+    {
         flashlight.enabled = isFlashlightOn;
         _currentBattery = maxBattery;
 
         OnBatteryChanged?.Invoke(_currentBattery);
+    }
+
+    private void OnDeath()
+    {
+        enabled = false;
     }
 
     void Update()
@@ -48,7 +76,7 @@ public class FlashLightController : MonoBehaviour
 
             if (Physics.Raycast(playerCam.position, playerCam.forward, out RaycastHit hit, rayRange, enemyLayer))
             {
-                GameEvents.FireOnIlluminatingMonster(Time.deltaTime, playerCam.transform);
+                GameEvents.FireOnIlluminatingMonster(Time.deltaTime, transform);
                 Debug.DrawLine(playerCam.position, playerCam.position + playerCam.forward * hit.distance, Color.red);
             }
             else
@@ -60,6 +88,8 @@ public class FlashLightController : MonoBehaviour
 
     public void ToggleFlashlight()
     {
+        if (!enabled) return;
+
         if (isFlashlightOn == false && _currentBattery <= 0)
         {
             return;
@@ -74,13 +104,5 @@ public class FlashLightController : MonoBehaviour
         _currentBattery += amount;
         _currentBattery = Mathf.Clamp(_currentBattery, 0, maxBattery);
         OnBatteryChanged?.Invoke(_currentBattery);
-    }
-
-    void OnDestroy()
-    {
-        if (playerInput != null)
-        {
-            playerInput.OnFlashlightChanged -= ToggleFlashlight;
-        }
     }
 }

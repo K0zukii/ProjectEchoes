@@ -21,7 +21,7 @@ public class EnemyDetection : MonoBehaviour
 
     //Timer
     private float reactionTimer = 0;
-    private float loseTrackTimer = 3f;
+    private float loseTrackTimer = 6f;
     [SerializeField] private float reactionDelay = 0.5f;
 
     void OnEnable()
@@ -89,16 +89,30 @@ public class EnemyDetection : MonoBehaviour
         reactionTimer = reactionDelay;
     }
 
+    public void RefreshLoseTrackTimer(float duration = 6f)
+    {
+        loseTrackTimer = duration;
+    }
+
     public void OnIlluminated(float delta, Transform playerTransform)
     {
         if (isAsleep) return;
         loseTrackTimer = 3f;
-        currentIlluminationTime += delta;
-        if (currentIlluminationTime > illuminationThreshold)
+
+        if (HasSeenPlayer)
         {
-            HasSeenPlayer = true;
             currentIlluminationTime = 0;
             PlayerTarget = playerTransform;
+        }
+        else
+        {
+            currentIlluminationTime += delta;
+            if (currentIlluminationTime > illuminationThreshold)
+            {
+                HasSeenPlayer = true;
+                currentIlluminationTime = 0;
+                PlayerTarget = playerTransform;
+            }
         }
     }
 

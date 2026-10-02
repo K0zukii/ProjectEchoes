@@ -2,29 +2,55 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; private set; }
+
     [SerializeField] private int totalGenerators = 3;
-    private int genRemaining;
+    public int GeneratorsRemaining { get; private set; }
+    public bool HasCollectedFolder { get; private set; }
 
-    void Start()
+    void Awake()
     {
-        genRemaining = totalGenerators;
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
 
-        GameEvents.OnTerminalActivated += DecreaseGenerator;
+        GeneratorsRemaining = totalGenerators;
+    }
+    void OnEnable()
+    {
+        GameEvents.OnTerminalActivated += HandleGeneratorsDeactivated;
+        GameEvents.OnFolderCollected += HandleFolderCollected;
     }
 
     void OnDisable()
     {
-        GameEvents.OnTerminalActivated -= DecreaseGenerator;
+        GameEvents.OnTerminalActivated -= HandleGeneratorsDeactivated;
+        GameEvents.OnFolderCollected -= HandleFolderCollected;
     }
 
-    void DecreaseGenerator()
+    private void HandleGeneratorsDeactivated()
     {
-        genRemaining--;
-        Debug.Log("Generateur desactive ! Generateur restant : " + genRemaining);
-        
-        if(genRemaining <= 0)
+        GeneratorsRemaining--;
+        Debug.Log($"[GAME MANAGER] Generateur coupe. Restants : {GeneratorsRemaining}");
+
+        if (GeneratorsRemaining <= 0)
         {
-            Debug.Log("Porte deverouille, echappe toi vite !");
+            Debug.Log("<color=green>[GAME MANAGER] Tous les gens sont coupes ! </color>");
+            GameEvents.FireOnAllGeneratorsDisabled();
         }
+    }
+
+    private void HandleFolderCollected()
+    {
+        HasCollectedFolder = true;
+        Debug.Log("[GAME MANAGER] Dossier securise.");
+    }
+
+    public bool CanPlayerEscape()
+    {
+        return GeneratorsRemaining <= 0 && HasCollectedFolder;
     }
 }

@@ -1,0 +1,11 @@
+Model Information:
+* title:	Document File Folder
+* source:	https://sketchfab.com/3d-models/document-file-folder-11390179bba7462484d344e2fe22c703
+* author:	Kami Rapacz (https://sketchfab.com/kuroderuta)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Document File Folder" (https://sketchfab.com/3d-models/document-file-folder-11390179bba7462484d344e2fe22c703) by Kami Rapacz (https://sketchfab.com/kuroderuta) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
