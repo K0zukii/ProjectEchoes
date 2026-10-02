@@ -17,8 +17,31 @@ public class NoiseEmitter : MonoBehaviour
         }
     }
 
+    void OnEnable()
+    {
+        GameEvents.OnPlayerCaught += StopAudio;
+        GameEvents.OnGameWon += StopAudio;
+    }
+
+    void OnDisable()
+    {
+        GameEvents.OnPlayerCaught -= StopAudio;
+        GameEvents.OnGameWon -= StopAudio;
+    }
+
+    private void StopAudio()
+    {
+        if (collisionAudio != null)
+        {
+            collisionAudio.Stop();
+        }
+        enabled = false;
+    }
+
     public void PlaySound(bool state, float pitch)
     {
+        if (!enabled) return;
+
         collisionAudio.pitch = pitch;
         if (state == true && !collisionAudio.isPlaying)
         {

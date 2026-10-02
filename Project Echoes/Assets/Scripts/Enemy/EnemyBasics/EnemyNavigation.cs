@@ -22,7 +22,7 @@ public class EnemyNavigation : MonoBehaviour
     public bool HasReachedDestination()
     {
         bool isArrived = false;
-        if(enemyNavMesh.remainingDistance <= enemyNavMesh.stoppingDistance && !enemyNavMesh.pathPending)
+        if (enemyNavMesh.remainingDistance <= enemyNavMesh.stoppingDistance && !enemyNavMesh.pathPending)
         {
             isArrived = true;
         }
@@ -38,6 +38,8 @@ public class EnemyNavigation : MonoBehaviour
     public void StopMoving()
     {
         enemyNavMesh.isStopped = true;
+        enemyNavMesh.ResetPath();
+        enemyNavMesh.velocity = Vector3.zero;
     }
 
     public void SetSpeed(float speed)

@@ -30,6 +30,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(Vector2 input, float speed)
     {
+        if (!enabled) return;
+
         Vector3 direction = input.x * transform.right + input.y * transform.forward;
         charController.Move(speed * Time.deltaTime * direction);
         currentSpeed = speed;
@@ -56,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
         {
             velocity.y = -2f;
         }
-        
+
         velocity.y -= gravity * Time.deltaTime;
         charController.Move(velocity * Time.deltaTime);
     }

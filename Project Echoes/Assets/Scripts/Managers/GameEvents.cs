@@ -28,4 +28,22 @@ public static class GameEvents
     {
         OnTerminalActivated?.Invoke();
     }
+
+    public static event Action OnGameWon;
+    public static void FireOnGameWon()
+    {
+        OnGameWon?.Invoke();
+    }
+
+    public static event Action OnFolderCollected;
+    public static void FireOnFolderCollected()
+    {
+        OnFolderCollected?.Invoke();
+    }
+
+    public static event Action OnAllGeneratorsDisabled;
+    public static void FireOnAllGeneratorsDisabled()
+    {
+        OnAllGeneratorsDisabled?.Invoke();
+    }
 }
