@@ -10,12 +10,12 @@ public class NarrativeDirector : MonoBehaviour
 
     void OnEnable()
     {
-        GameEvents.OnTerminalActivated += HandleGenerators;
+        GameEvents.OnGeneratorDeactivated += HandleGenerators;
     }
 
     void OnDisable()
     {
-        GameEvents.OnTerminalActivated -= HandleGenerators;
+        GameEvents.OnGeneratorDeactivated -= HandleGenerators;
     }
 
     private IEnumerator PlayIntroSequence()
@@ -27,10 +27,8 @@ public class NarrativeDirector : MonoBehaviour
         SubtitleManager.Instance.ShowSubtitle("The blast door sealed shut behind me. Without the passcode, I have to cut the facility's power to force a manual override.", 5f);
     }
 
-    private void HandleGenerators()
+    private void HandleGenerators(int remaining)
     {
-        int remaining = GameManager.Instance.GeneratorsRemaining;
-
         if (remaining == 2)
         {
             SubtitleManager.Instance.ShowSubtitle("One terminal down. Two left before the backup power cuts completely.", 3.5f);

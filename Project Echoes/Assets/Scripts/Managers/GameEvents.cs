@@ -46,4 +46,17 @@ public static class GameEvents
     {
         OnAllGeneratorsDisabled?.Invoke();
     }
+
+    public static event Action<int> OnGeneratorDeactivated;
+    public static void FireOnGeneratorDeactivated(int remaining)
+    {
+        OnGeneratorDeactivated?.Invoke(remaining);
+    }
+
+    public static event Action<Transform> OnPlayerCaughtByMonster;
+    public static void FireOnPlayerCaughtByMonster(Transform monsterTransform)
+    {
+        OnPlayerCaughtByMonster?.Invoke(monsterTransform);
+        OnPlayerCaught?.Invoke();
+    }
 }

@@ -4,7 +4,14 @@ public class PlayerLook : MonoBehaviour
 {
     [SerializeField] private Transform playerCam;
     [SerializeField] private PlayerInputHandler playerInput;
-    [SerializeField] private float sensitivity;
+    [SerializeField] private float sensitivity = 1.5f;
+
+    public float Sensitivity
+    {
+        get => sensitivity;
+        set => sensitivity = Mathf.Clamp(value, 0.1f, 3f);
+    }
+
     private float xRotation = 0f;
     private Vector2 currentMouseDelta;
     private Vector2 currentMouseVelocity;
@@ -27,12 +34,12 @@ public class PlayerLook : MonoBehaviour
         Vector2 targetMouseDelta = playerInput.LookInput;
 
         currentMouseDelta = Vector2.SmoothDamp(currentMouseDelta, targetMouseDelta, ref currentMouseVelocity, smoothTime);
-    
+
         float mouseX = currentMouseDelta.x;
         float mouseY = currentMouseDelta.y;
 
-        mouseX *= sensitivity;
-        mouseY *= sensitivity;
+        mouseX *= Sensitivity;
+        mouseY *= Sensitivity;
 
         xRotation -= mouseY;
 

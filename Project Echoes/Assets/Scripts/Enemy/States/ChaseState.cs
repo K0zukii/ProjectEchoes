@@ -80,7 +80,7 @@ public class ChaseState : IState
             _enemyNavigation.StopMoving();
             _enemyState.AnimationController.TriggerAttack();
             Debug.Log("<color=red>[CHASE] JOUEUR ATTRAPÉ !</color>");
-            GameEvents.FireOnPlayerCaught();
+            GameEvents.FireOnPlayerCaughtByMonster(_enemyNavigation.transform);
             return;
         }
 

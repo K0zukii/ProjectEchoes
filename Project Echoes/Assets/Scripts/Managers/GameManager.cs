@@ -36,6 +36,8 @@ public class GameManager : MonoBehaviour
         GeneratorsRemaining--;
         Debug.Log($"[GAME MANAGER] Generateur coupe. Restants : {GeneratorsRemaining}");
 
+        GameEvents.FireOnGeneratorDeactivated(GeneratorsRemaining);
+
         if (GeneratorsRemaining <= 0)
         {
             Debug.Log("<color=green>[GAME MANAGER] Tous les gens sont coupes ! </color>");
