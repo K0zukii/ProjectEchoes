@@ -1,0 +1,11 @@
+Model Information:
+* title:	Computer SGD 116 - Logan Thomas
+* source:	https://sketchfab.com/3d-models/computer-sgd-116-logan-thomas-08fad1cf5be7438ca4e54d3b17525cee
+* author:	Logan Thomas (https://sketchfab.com/LThomas762)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Computer SGD 116 - Logan Thomas" (https://sketchfab.com/3d-models/computer-sgd-116-logan-thomas-08fad1cf5be7438ca4e54d3b17525cee) by Logan Thomas (https://sketchfab.com/LThomas762) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
