@@ -29,7 +29,7 @@ public class ThrowableObject : MonoBehaviour, IInteractable
 
         objectRb.isKinematic = true;
         transform.SetParent(playerCam);
-        transform.SetLocalPositionAndRotation(new Vector3(0f, -0.2f, 1.5f), Quaternion.identity);
+        transform.SetLocalPositionAndRotation(new Vector3(0f, -0.2f, 0.8f), Quaternion.identity);
     }
 
     void ThrowObject()

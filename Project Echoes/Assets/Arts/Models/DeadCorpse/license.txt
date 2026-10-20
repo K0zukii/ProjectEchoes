@@ -1,0 +1,11 @@
+Model Information:
+* title:	Horror Corpse
+* source:	https://sketchfab.com/3d-models/horror-corpse-14188e0978b94dd398afa7dc98f8bc19
+* author:	Nomeda Repsaite (https://sketchfab.com/NomedaRepsaite)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Horror Corpse" (https://sketchfab.com/3d-models/horror-corpse-14188e0978b94dd398afa7dc98f8bc19) by Nomeda Repsaite (https://sketchfab.com/NomedaRepsaite) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
