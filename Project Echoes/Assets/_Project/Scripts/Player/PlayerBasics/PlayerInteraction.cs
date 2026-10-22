@@ -14,47 +14,49 @@ public class PlayerInteraction : MonoBehaviour
     public event Action<bool> OnHoverStateChanged;
     private bool isHovering = false;
 
-    void Start()
+    void Awake()
     {
         playerInput = GetComponent<PlayerInputHandler>();
-        playerInput.IsInteracting += OnInteractInputReceived;
     }
 
-    void OnDestroy()
+    void OnEnable()
     {
-        playerInput.IsInteracting -= OnInteractInputReceived;
+        if (playerInput != null)
+        {
+            playerInput.IsInteracting += OnInteractInputReceived;
+        }
+    }
+
+    void OnDisable()
+    {
+        if (playerInput != null)
+        {
+            playerInput.IsInteracting -= OnInteractInputReceived;
+        }
     }
 
     void Update()
     {
-        if (Physics.Raycast(playerCam.position, playerCam.forward, out RaycastHit hit, interactRange, interactableLayer))
+        if (Physics.Raycast(playerCam.position, playerCam.forward, out RaycastHit hit, interactRange, interactableLayer) && hit.collider.TryGetComponent(out IInteractable interactableObj))
         {
-            if (hit.collider.TryGetComponent<IInteractable>(out IInteractable interactableObj))
-            {
-                currentInteractable = interactableObj;
+            currentInteractable = interactableObj;
 
-                if (isHovering == false)
-                {
-                    isHovering = true;
-                    OnHoverStateChanged?.Invoke(true);
-                }
-            }
-            else
+            if (!isHovering)
             {
-                ClearInteraction();
+                isHovering = true;
+                OnHoverStateChanged?.Invoke(true);
             }
+            return;
         }
-        else
-        {
-            ClearInteraction();
-        }
+
+        ClearInteraction();
     }
 
     private void ClearInteraction()
     {
         currentInteractable = null;
 
-        if (isHovering == true)
+        if (isHovering)
         {
             isHovering = false;
             OnHoverStateChanged?.Invoke(false);

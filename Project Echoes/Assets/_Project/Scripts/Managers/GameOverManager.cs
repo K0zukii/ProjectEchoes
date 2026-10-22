@@ -96,7 +96,6 @@ public class GameOverManager : MonoBehaviour
 
     public void QuitGame()
     {
-        Debug.Log("Game is closing...");
         Application.Quit();
 
 #if UNITY_EDITOR

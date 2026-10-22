@@ -2,7 +2,6 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using System;
 
 public class VictoryManager : MonoBehaviour
 {
@@ -20,18 +19,11 @@ public class VictoryManager : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private float fadeDuration = 1.5f;
+    [SerializeField] private float subtitleDuration = 4f;
+    [SerializeField] private float reminderCooldown = 4.5f;
 
     private bool _hasEscaped = false;
-    private float _reminderCooldown = 0f;
-
-    void Update()
-    {
-        if (_reminderCooldown > 0f)
-        {
-            _reminderCooldown -= Time.deltaTime;
-        }
-    }
-
+    private float _nextReminderTime = 0f;
 
     void Awake()
     {
@@ -73,10 +65,13 @@ public class VictoryManager : MonoBehaviour
     {
         if (!GameManager.Instance.HasCollectedFolder)
         {
-            if (_reminderCooldown <= 0f)
+            if (Time.time >= _nextReminderTime)
             {
-                SubtitleManager.Instance.ShowSubtitle("If only I had the folder, I would already be out of this nightmare...", 4f);
-                _reminderCooldown = 4.5f;
+                if (SubtitleManager.Instance != null)
+                {
+                    SubtitleManager.Instance.ShowSubtitle("If only I had the folder, I would already be out of this nightmare...", subtitleDuration);
+                }
+                _nextReminderTime = Time.time + reminderCooldown;
             }
             return;
         }

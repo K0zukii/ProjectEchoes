@@ -42,9 +42,9 @@ public class CrouchState : IState
             noiseEmitter.PlaySound(false, 0.85f);
         }
 
-        if (playerInput.IsCrouching == false)
+        if (!playerInput.IsCrouching)
         {
-            if (playerInput.IsSprinting)
+            if (playerInput.IsSprinting && playerStamina.CanSprint)
             {
                 playerState.ChangeState(new SprintState(playerState, playerMovement, playerInput, playerStamina, noiseEmitter));
             }

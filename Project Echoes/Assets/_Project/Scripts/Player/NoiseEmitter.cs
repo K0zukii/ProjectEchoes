@@ -40,15 +40,15 @@ public class NoiseEmitter : MonoBehaviour
 
     public void PlaySound(bool state, float pitch)
     {
-        if (!enabled) return;
+        if (!enabled || collisionAudio == null) return;
 
         collisionAudio.pitch = pitch;
-        if (state == true && !collisionAudio.isPlaying)
+        if (state && !collisionAudio.isPlaying)
         {
             collisionAudio.Stop();
             collisionAudio.Play();
         }
-        else if (state == false)
+        else if (!state)
         {
             collisionAudio.Stop();
         }

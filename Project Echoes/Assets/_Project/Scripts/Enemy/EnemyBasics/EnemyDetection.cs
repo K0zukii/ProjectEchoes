@@ -63,19 +63,16 @@ public class EnemyDetection : MonoBehaviour
 
         if (distance > volumeRange)
         {
-            Debug.Log("La distance est trop loin donc on ignore le bruit.");
             return;
         }
         else if (distance < 4f && source.CompareTag("Player"))
         {
-            Debug.Log("La distance est proche (distance < 4) et c'est le joueur directement qui est la source, donc on rentre dans on met HasSeenPlayer a true");
             HasSeenPlayer = true;
             loseTrackTimer = 3f;
             PlayerTarget = source;
         }
         else if (!IsInvesting)
         {
-            Debug.Log("On rentre dans le dernier if, cela veut dire que le bruit n'est pas ignore, est loin et on est pas deja en train d'Investigate.");
             Vector3 errorRadius = Random.insideUnitSphere * errorMarge;
             errorRadius.y = 0f;
             LastKnownPosition = position + errorRadius;

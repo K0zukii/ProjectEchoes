@@ -5,6 +5,7 @@ public class PlayerLook : MonoBehaviour
     [SerializeField] private Transform playerCam;
     [SerializeField] private PlayerInputHandler playerInput;
     [SerializeField] private float sensitivity = 1.5f;
+    [SerializeField] private float smoothTime = 0.05f;
 
     public float Sensitivity
     {
@@ -15,14 +16,13 @@ public class PlayerLook : MonoBehaviour
     private float xRotation = 0f;
     private Vector2 currentMouseDelta;
     private Vector2 currentMouseVelocity;
-    [SerializeField] private float smoothTime = 0.05f;
 
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        sensitivity = PlayerPrefs.GetFloat("MouseSensitivity", sensitivity);
+        Sensitivity = PlayerPrefs.GetFloat("MouseSensitivity", sensitivity);
     }
 
 
@@ -37,15 +37,10 @@ public class PlayerLook : MonoBehaviour
 
         currentMouseDelta = Vector2.SmoothDamp(currentMouseDelta, targetMouseDelta, ref currentMouseVelocity, smoothTime);
 
-        float mouseX = currentMouseDelta.x;
-        float mouseY = currentMouseDelta.y;
+        float mouseX = currentMouseDelta.x * Sensitivity;
+        float mouseY = currentMouseDelta.y * Sensitivity;
 
-        mouseX *= Sensitivity;
-        mouseY *= Sensitivity;
-
-        xRotation -= mouseY;
-
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+        xRotation = Mathf.Clamp(xRotation - mouseY, -90f, 90f);
 
         playerCam.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 

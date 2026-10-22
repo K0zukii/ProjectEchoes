@@ -7,11 +7,13 @@ public class FlashLightController : MonoBehaviour
     [SerializeField] private Light flashlight;
     [SerializeField] private Transform playerCam;
     [SerializeField] private LayerMask enemyLayer;
+
+    [Header("Battery Settings")]
     [SerializeField] private float maxBattery;
     [SerializeField] private float drainRate;
-    [SerializeField] private float regenRate;
     [SerializeField] private float rayRange = 10f;
-    [SerializeField] private float _currentBattery;
+
+    private float _currentBattery;
     public float CurrentBattery
     {
         get { return _currentBattery; }
@@ -77,11 +79,6 @@ public class FlashLightController : MonoBehaviour
             if (Physics.Raycast(playerCam.position, playerCam.forward, out RaycastHit hit, rayRange, enemyLayer))
             {
                 GameEvents.FireOnIlluminatingMonster(Time.deltaTime, transform);
-                Debug.DrawLine(playerCam.position, playerCam.position + playerCam.forward * hit.distance, Color.red);
-            }
-            else
-            {
-                Debug.DrawLine(playerCam.position, playerCam.position + playerCam.forward, Color.white);
             }
         }
     }

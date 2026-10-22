@@ -3,45 +3,36 @@ using System;
 
 public class PlayerStamina : MonoBehaviour
 {
-    private float _maxStamina;
-    public float MaxStamina
-    {
-        get {return _maxStamina;}
-    }
+    [SerializeField] private float maxStamina = 100f;
     [SerializeField] private float drainRate;
     [SerializeField] private float regenRate;
     [SerializeField] private float timeBeforeRegen = 3f;
     [SerializeField] private float sprintThreshold = 20f;
-    private float regenTimer = 0f;
-    public bool CanSprint {get; private set;}
+
     private float _currentStamina;
-    public float CurrentStamina
-    {
-        get {return _currentStamina;}
-    }
+    private float regenTimer = 0f;
+
+    public float MaxStamina => maxStamina;
+    public float CurrentStamina => _currentStamina;
+    public bool CanSprint { get; private set; }
 
     public event Action<float> OnStaminaChanged;
 
     void Start()
     {
-        _maxStamina = 100f;
-        _currentStamina = _maxStamina;
+        _currentStamina = maxStamina;
         CanSprint = true;
 
-        OnStaminaChanged?.Invoke(_currentStamina / _maxStamina);
+        OnStaminaChanged?.Invoke(_currentStamina / maxStamina);
     }
 
     public void ConsumeStamina()
     {
-        _currentStamina -= drainRate * Time.deltaTime;
-        _currentStamina = Mathf.Clamp(_currentStamina, 0, _maxStamina);
+        _currentStamina = Mathf.Clamp(_currentStamina - drainRate * Time.deltaTime, 0f, maxStamina);
+        OnStaminaChanged?.Invoke(_currentStamina / maxStamina);
 
-        float ratio = _currentStamina / _maxStamina;
-        OnStaminaChanged?.Invoke(ratio);
-
-        if (_currentStamina <= 0)
+        if (_currentStamina <= 0f)
         {
-            _currentStamina = 0;
             CanSprint = false;
             regenTimer = timeBeforeRegen;
         }
@@ -54,19 +45,14 @@ public class PlayerStamina : MonoBehaviour
             regenTimer -= Time.deltaTime;
             return;
         }
-        else
+        if (_currentStamina >= maxStamina) return;
+
+        _currentStamina = Mathf.Clamp(_currentStamina + regenRate * Time.deltaTime, 0f, maxStamina);
+        OnStaminaChanged?.Invoke(_currentStamina / maxStamina);
+
+        if (!CanSprint && _currentStamina >= sprintThreshold)
         {
-            _currentStamina += regenRate * Time.deltaTime;
-            _currentStamina = Mathf.Clamp(_currentStamina, 0, _maxStamina);
-
-            float ratio = _currentStamina / _maxStamina;
-            OnStaminaChanged?.Invoke(ratio);
-
-            if (CanSprint == false && _currentStamina >= sprintThreshold)
-            {
-                CanSprint = true;
-            }
+            CanSprint = true;
         }
-        
     }
 }

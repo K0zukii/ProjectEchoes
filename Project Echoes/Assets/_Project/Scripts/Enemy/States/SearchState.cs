@@ -17,7 +17,6 @@ public class SearchState : IState
 
     public void OnEnterState()
     {
-        Debug.Log("L'IA A COMMENCE LE SEARCH STATE !");
         _enemyNavigation.SetSpeed(2.5f);
         _enemyNavigation.StopMoving();
     }

@@ -21,7 +21,6 @@ public class ChaseState : IState
 
     public void OnEnterState()
     {
-        Debug.Log("<color=yellow>[CHASE] Début de l'état, rugissement lancé</color>");
         _enemyState.AnimationController.TriggerRoar();
 
         _enemyNavigation.StopMoving();
@@ -55,7 +54,6 @@ public class ChaseState : IState
                 {
                     _enemyNavigation.MoveToPosition(_enemyDetection.PlayerTarget.position);
                 }
-                Debug.Log("<color=green>[CHASE] Fin du rugissement : ordre de course envoyé</color>");
             }
 
             return;
@@ -63,7 +61,6 @@ public class ChaseState : IState
 
         if (!_enemyDetection.HasSeenPlayer || _enemyDetection.PlayerTarget == null)
         {
-            Debug.Log("<color=orange>[CHASE] Joueur perdu de vue -> Passage en SearchState</color>");
             _enemyState.ChangeState(new SearchState(_enemyState, _enemyNavigation, _enemyDetection));
             return;
         }
@@ -80,14 +77,13 @@ public class ChaseState : IState
             _hasCaughtPlayer = true;
             _enemyNavigation.StopMoving();
             _enemyState.AnimationController.TriggerAttack();
-            Debug.Log("<color=red>[CHASE] JOUEUR ATTRAPÉ !</color>");
+
             GameEvents.FireOnMonsterChaseEnd();
             GameEvents.FireOnPlayerCaughtByMonster(_enemyNavigation.transform);
             return;
         }
 
         _enemyNavigation.MoveToPosition(_enemyDetection.PlayerTarget.position);
-        Debug.Log($"PathStatus: {_enemyNavigation.GetComponent<UnityEngine.AI.NavMeshAgent>().pathStatus} | Timer restant: {_enemyDetection.GetType().GetField("loseTrackTimer", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).GetValue(_enemyDetection)}");
     }
 
     public void ExitState()

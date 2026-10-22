@@ -29,66 +29,85 @@ public class FPSArmBobbing : MonoBehaviour
     private bool isPlayingActionAnimation = false;
     private Vector3 originalPosition;
 
+    void Awake()
+    {
+        if (inputHandler == null || playerMovement == null)
+        {
+            Debug.LogError($"[{gameObject.name}] FPSArmBobbing requiert PlayerInputHandler et PlayerMovement !");
+            enabled = false;
+        }
+    }
+
     void Start()
     {
         originalPosition = transform.localPosition;
+    }
 
-        if (inputHandler == null || playerMovement == null)
+    void OnEnable()
+    {
+        if (inputHandler != null)
         {
-            Debug.LogError($"[{gameObject.name}] FPSArmBobbing requiert PlayerInputHandler et PlayerMovement sur ses parents !");
-            return;
+            inputHandler.IsInteracting += HandleInteraction;
         }
+    }
 
-        inputHandler.IsInteracting += () => SetActionPlaying(true);
+    void OnDisable()
+    {
+        if (inputHandler != null)
+        {
+            inputHandler.IsInteracting -= HandleInteraction;
+        }
+    }
+
+    private void HandleInteraction()
+    {
+        SetActionPlaying(true);
     }
 
     void Update()
     {
-        if (inputHandler == null || playerMovement == null) return;
-
         bool isTryingToMove = inputHandler.MoveInput != Vector2.zero;
         float currentSpeed = isTryingToMove ? playerMovement.currentSpeed : 0f;
-        
+
         Vector3 targetPosition = originalPosition;
 
-        if (isPlayingActionAnimation)
+        if (!isPlayingActionAnimation)
         {
-            
-        }
-        else if (inputHandler.IsCrouching)
-        {
-            BobbingProfile activeProfile = crouchProfile;
-            if (currentSpeed > 0.1f)
+            if (inputHandler.IsCrouching)
             {
+                BobbingProfile activeProfile = crouchProfile;
+                if (currentSpeed > 0.1f)
+                {
+                    timer += Time.deltaTime * activeProfile.speed;
+                    targetPosition.y += Mathf.Sin(timer) * activeProfile.amount;
+                    targetPosition.x += Mathf.Cos(timer * 0.5f) * activeProfile.amount * 0.4f;
+                }
+                else
+                {
+                    timer += Time.deltaTime * idleProfile.speed * 0.7f;
+                    targetPosition.y += Mathf.Sin(timer) * (idleProfile.amount * 0.6f);
+                }
+            }
+            else if (currentSpeed < 0.1f)
+            {
+                BobbingProfile activeProfile = idleProfile;
                 timer += Time.deltaTime * activeProfile.speed;
                 targetPosition.y += Mathf.Sin(timer) * activeProfile.amount;
-                targetPosition.x += Mathf.Cos(timer * 0.5f) * activeProfile.amount * 0.4f;
+            }
+            else if (currentSpeed > runSpeedThreshold)
+            {
+                BobbingProfile activeProfile = runProfile;
+                timer += Time.deltaTime * activeProfile.speed;
+                targetPosition.y += Mathf.Sin(timer) * activeProfile.amount;
+                targetPosition.x += Mathf.Cos(timer * 0.5f) * activeProfile.amount * 0.8f;
             }
             else
             {
-                timer += Time.deltaTime * idleProfile.speed * 0.7f;
-                targetPosition.y += Mathf.Sin(timer) * (idleProfile.amount * 0.6f);
+                BobbingProfile activeProfile = walkProfile;
+                timer += Time.deltaTime * activeProfile.speed;
+                targetPosition.y += Mathf.Sin(timer) * activeProfile.amount;
+                targetPosition.x += Mathf.Cos(timer * 0.5f) * activeProfile.amount * 0.6f;
             }
-        }
-        else if (currentSpeed < 0.1f)
-        {
-            BobbingProfile activeProfile = idleProfile;
-            timer += Time.deltaTime * activeProfile.speed;
-            targetPosition.y += Mathf.Sin(timer) * activeProfile.amount;
-        }
-        else if (currentSpeed > runSpeedThreshold)
-        {
-            BobbingProfile activeProfile = runProfile;
-            timer += Time.deltaTime * activeProfile.speed;
-            targetPosition.y += Mathf.Sin(timer) * activeProfile.amount;
-            targetPosition.x += Mathf.Cos(timer * 0.5f) * activeProfile.amount * 0.8f;
-        }
-        else
-        {
-            BobbingProfile activeProfile = walkProfile;
-            timer += Time.deltaTime * activeProfile.speed;
-            targetPosition.y += Mathf.Sin(timer) * activeProfile.amount;
-            targetPosition.x += Mathf.Cos(timer * 0.5f) * activeProfile.amount * 0.6f;
         }
 
         transform.localPosition = Vector3.Lerp(transform.localPosition, targetPosition, Time.deltaTime * smoothSpeed);

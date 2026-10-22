@@ -1,34 +1,35 @@
 using UnityEngine;
-[RequireComponent(typeof(Animator))]
+using UnityEngine.AI;
 
+[RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(UnityEngine.AI.NavMeshAgent))]
 public class EnemyAnimation : MonoBehaviour
 {
     private static readonly int SpeedHash = Animator.StringToHash("Speed");
+    private static readonly int ScreamHash = Animator.StringToHash("Scream");
+    private static readonly int AttackHash = Animator.StringToHash("Attack");
+
     [SerializeField] private Animator animator;
-    [SerializeField] private UnityEngine.AI.NavMeshAgent agent;
+    [SerializeField] private NavMeshAgent agent;
 
     void Awake()
     {
         if (animator == null) animator = GetComponent<Animator>();
-        if (agent == null) agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        if (agent == null) agent = GetComponent<NavMeshAgent>();
     }
 
     void Update()
     {
-        if (animator != null && agent != null)
-        {
-            animator.SetFloat(SpeedHash, agent.velocity.magnitude);
-        }
+        animator.SetFloat(SpeedHash, agent.velocity.magnitude);
     }
 
     public void TriggerRoar()
     {
-        animator.SetTrigger("Scream");
+        animator.SetTrigger(ScreamHash);
     }
 
     public void TriggerAttack()
     {
-        animator.SetTrigger("Attack");
+        animator.SetTrigger(AttackHash);
     }
 }

@@ -21,12 +21,7 @@ public class EnemyNavigation : MonoBehaviour
 
     public bool HasReachedDestination()
     {
-        bool isArrived = false;
-        if (enemyNavMesh.remainingDistance <= enemyNavMesh.stoppingDistance && !enemyNavMesh.pathPending)
-        {
-            isArrived = true;
-        }
-        return isArrived;
+        return enemyNavMesh.remainingDistance <= enemyNavMesh.stoppingDistance && !enemyNavMesh.pathPending;
     }
 
     public void MoveToPosition(Vector3 target)

@@ -30,6 +30,5 @@ public class SleepState : IState
     public void ExitState()
     {
         _enemyDetection.isAsleep = false;
-        _enemyNavigation.MoveToPosition(new Vector3((float)-2.4840467, (float)0.100000024, (float)-35.3687172));
     }
 }

@@ -28,7 +28,7 @@ public class PauseManager : MonoBehaviour
         if (restartButton != null) restartButton.onClick.AddListener(RestartGame);
         if (menuButton != null) menuButton.onClick.AddListener(ReturnToMainMenu);
 
-        float savedVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
+        float savedVolume = PlayerPrefs.GetFloat("MasterVolume", 0.8f);
         AudioListener.volume = savedVolume;
 
         if (volumeSlider != null)
@@ -66,6 +66,10 @@ public class PauseManager : MonoBehaviour
     private void LockPause()
     {
         canPause = false;
+        if (isPaused)
+        {
+            ResumeGame();
+        }
     }
 
     void Update()
@@ -92,7 +96,6 @@ public class PauseManager : MonoBehaviour
 
         if (pausePanel != null) pausePanel.SetActive(true);
         if (hudRoot != null) hudRoot.SetActive(false);
-
         if (playerLookScript != null) playerLookScript.enabled = false;
 
         Cursor.lockState = CursorLockMode.None;
@@ -106,7 +109,6 @@ public class PauseManager : MonoBehaviour
 
         if (pausePanel != null) pausePanel.SetActive(false);
         if (hudRoot != null) hudRoot.SetActive(true);
-
         if (playerLookScript != null) playerLookScript.enabled = true;
 
         Cursor.lockState = CursorLockMode.Locked;
@@ -129,6 +131,7 @@ public class PauseManager : MonoBehaviour
     {
         AudioListener.volume = value;
         PlayerPrefs.SetFloat("MasterVolume", value);
+        PlayerPrefs.Save();
     }
 
     private void SetSensitivity(float value)
@@ -138,5 +141,6 @@ public class PauseManager : MonoBehaviour
             playerLookScript.Sensitivity = value;
         }
         PlayerPrefs.SetFloat("MouseSensitivity", value);
+        PlayerPrefs.Save();
     }
 }

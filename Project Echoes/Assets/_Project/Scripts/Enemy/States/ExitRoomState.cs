@@ -17,7 +17,6 @@ public class ExitRoomState : IState
 
     public void OnEnterState()
     {
-        Debug.Log("<color=cyan> [IA] Sortie de la cellule vers le centre...</color>");
         _enemyNavigation.SetSpeed(3.5f);
         _enemyNavigation.MoveToPosition(_targetCenter);
     }
@@ -30,16 +29,8 @@ public class ExitRoomState : IState
             return;
         }
 
-        _enemyNavigation.MoveToPosition(_targetCenter);
-
-        Vector3 enemyPosFlat = _enemyState.transform.position;
-        Vector3 targetFlat = _targetCenter;
-        enemyPosFlat.y = 0f;
-        targetFlat.y = 0f;
-
-        if (Vector3.Distance(enemyPosFlat, targetFlat) <= 1.5f || _enemyNavigation.HasReachedDestination())
+        if (_enemyNavigation.HasReachedDestination())
         {
-            Debug.Log("<color=cyan>[IA] Centre atteint, début des rondes normales.</color>");
             _enemyState.ChangeState(new SearchState(_enemyState, _enemyNavigation, _enemyDetection));
         }
     }

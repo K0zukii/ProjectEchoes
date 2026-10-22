@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 
 public class SubtitleManager : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class SubtitleManager : MonoBehaviour
 
     public void ShowSubtitle(string text, float duration = 4f)
     {
+        if (subtitleText == null) return;
+
         if (_currentSubtitleCoroutine != null)
         {
             StopCoroutine(_currentSubtitleCoroutine);

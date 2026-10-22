@@ -1,24 +1,26 @@
-using System;
 using UnityEngine;
-
 
 [RequireComponent(typeof(CharacterController))]
 
 [RequireComponent(typeof(PlayerInputHandler))]
 public class PlayerMovement : MonoBehaviour
 {
-    private CharacterController charController;
-    public float currentSpeed;
+    [Header("Physics & Ground")]
     [SerializeField] private float gravity = 19.62f;
-    [SerializeField] private Vector3 velocity;
-
-    private bool isGrounded;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundDistance;
     [SerializeField] private LayerMask layerMask;
+
+    [Header("Camera")]
     [SerializeField] private Transform playerCam;
 
-    void Start()
+    public float currentSpeed;
+
+    private Vector3 velocity;
+    private bool isGrounded;
+    private CharacterController charController;
+
+    void Awake()
     {
         charController = GetComponent<CharacterController>();
     }

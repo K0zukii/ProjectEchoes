@@ -17,7 +17,6 @@ public class InvestigateState : IState
 
     public void OnEnterState()
     {
-        Debug.Log("L'IA A COMMENCE LE INVESTIGATE STATE !");
         _enemyNavigation.SetSpeed(4.5f);
         lastKnowPos = _enemyDetection.LastKnownPosition;
         _enemyNavigation.MoveToPosition(lastKnowPos);

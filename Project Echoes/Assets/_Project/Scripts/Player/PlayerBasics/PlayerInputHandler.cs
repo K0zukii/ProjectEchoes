@@ -11,6 +11,19 @@ public class PlayerInputHandler : MonoBehaviour
     public event Action OnFlashlightChanged;
     public event Action IsInteracting;
     public event Action IsThrowing;
+
+    void OnEnable()
+    {
+        GameEvents.OnPlayerCaught += DisableInputs;
+        GameEvents.OnGameWon += DisableInputs;
+    }
+
+    void OnDisable()
+    {
+        GameEvents.OnPlayerCaught -= DisableInputs;
+        GameEvents.OnGameWon -= DisableInputs;
+    }
+
     public void Move(InputAction.CallbackContext context)
     {
         if (!enabled) return;
@@ -25,6 +38,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void OnSprint(InputAction.CallbackContext context)
     {
+        if (!enabled) return;
         IsSprinting = context.ReadValueAsButton();
     }
 
@@ -45,6 +59,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void OnInteraction(InputAction.CallbackContext context)
     {
+        if (!enabled) return;
         if (context.started)
         {
             IsInteracting?.Invoke();
@@ -53,23 +68,14 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void OnThrowing(InputAction.CallbackContext context)
     {
+        if (!enabled) return;
         if (context.started)
         {
             IsThrowing?.Invoke();
         }
     }
 
-    void OnEnable()
-    {
-        GameEvents.OnPlayerCaught += DisableInputs;
-        GameEvents.OnGameWon += DisableInputs;
-    }
 
-    void OnDisable()
-    {
-        GameEvents.OnPlayerCaught -= DisableInputs;
-        GameEvents.OnGameWon -= DisableInputs;
-    }
 
     private void DisableInputs()
     {
@@ -79,7 +85,7 @@ public class PlayerInputHandler : MonoBehaviour
         IsCrouching = false;
         enabled = false;
 
-        if (TryGetComponent<UnityEngine.InputSystem.PlayerInput>(out var inputComponent))
+        if (TryGetComponent<PlayerInput>(out var inputComponent))
         {
             inputComponent.DeactivateInput();
         }

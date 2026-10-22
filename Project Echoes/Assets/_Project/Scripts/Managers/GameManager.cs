@@ -34,13 +34,10 @@ public class GameManager : MonoBehaviour
     private void HandleGeneratorsDeactivated()
     {
         GeneratorsRemaining--;
-        Debug.Log($"[GAME MANAGER] Generateur coupe. Restants : {GeneratorsRemaining}");
-
         GameEvents.FireOnGeneratorDeactivated(GeneratorsRemaining);
 
         if (GeneratorsRemaining <= 0)
         {
-            Debug.Log("<color=green>[GAME MANAGER] Tous les gens sont coupes ! </color>");
             GameEvents.FireOnAllGeneratorsDisabled();
         }
     }
@@ -48,7 +45,6 @@ public class GameManager : MonoBehaviour
     private void HandleFolderCollected()
     {
         HasCollectedFolder = true;
-        Debug.Log("[GAME MANAGER] Dossier securise.");
     }
 
     public bool CanPlayerEscape()

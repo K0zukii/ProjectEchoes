@@ -16,7 +16,6 @@ public class PatrolState : IState
 
     public void OnEnterState()
     {
-        Debug.Log("L'IA A COMMENCE LE PATROL STATE !");
         _enemyNavigation.SetSpeed(3.5f);
         _enemyNavigation.MoveToPosition(_enemyNavigation.GetRandomDestination(_enemyState.gameObject.transform.position, 15f));
     }

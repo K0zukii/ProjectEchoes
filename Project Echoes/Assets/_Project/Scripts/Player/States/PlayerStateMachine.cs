@@ -11,20 +11,24 @@ public class PlayerStateMachine : MonoBehaviour
     private PlayerInputHandler playerInput;
     private PlayerStamina playerStamina;
     private NoiseEmitter noiseEmitter;
-    
+
     public void ChangeState(IState newState)
     {
         _currentState?.ExitState();
         _currentState = newState;
         newState.OnEnterState();
     }
-    void Start()
+
+    void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
         playerInput = GetComponent<PlayerInputHandler>();
         playerStamina = GetComponent<PlayerStamina>();
         noiseEmitter = GetComponent<NoiseEmitter>();
-        
+    }
+
+    void Start()
+    {
         ChangeState(new WalkState(this, playerMovement, playerInput, playerStamina, noiseEmitter));
     }
 

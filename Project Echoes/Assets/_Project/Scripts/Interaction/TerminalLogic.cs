@@ -29,7 +29,5 @@ public class TerminalLogic : MonoBehaviour, IInteractable
         {
             genSwitchOffSound.Play();
         }
-
-        Debug.Log("Générateur éteint ! La zone locale est dans le noir.");
     }
 }
