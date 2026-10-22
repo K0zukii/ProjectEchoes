@@ -1,0 +1,74 @@
+using System;
+using UnityEngine;
+
+public static class GameEvents
+{
+    public static event Action<float, Transform> OnIlluminatingMonster;
+    public static void FireOnIlluminatingMonster(float delta, Transform playerTransform)
+    {
+        OnIlluminatingMonster?.Invoke(delta, playerTransform);
+    }
+    public static event Action<Vector3, Transform, float> OnNoiseEmitted;
+    public static void FireOnNoiseEmiteed(Vector3 position, Transform source, float volumeRange)
+    {
+        OnNoiseEmitted?.Invoke(position, source, volumeRange);
+    }
+    public static event Action OnPlayerCaught;
+    public static void FireOnPlayerCaught()
+    {
+        OnPlayerCaught?.Invoke();
+    }
+    public static event Action OnGameOver;
+    public static void FireOnGameOver()
+    {
+        OnGameOver?.Invoke();
+    }
+    public static event Action OnTerminalActivated;
+    public static void FireOnTerminalActivated()
+    {
+        OnTerminalActivated?.Invoke();
+    }
+
+    public static event Action OnGameWon;
+    public static void FireOnGameWon()
+    {
+        OnGameWon?.Invoke();
+    }
+
+    public static event Action OnFolderCollected;
+    public static void FireOnFolderCollected()
+    {
+        OnFolderCollected?.Invoke();
+    }
+
+    public static event Action OnAllGeneratorsDisabled;
+    public static void FireOnAllGeneratorsDisabled()
+    {
+        OnAllGeneratorsDisabled?.Invoke();
+    }
+
+    public static event Action<int> OnGeneratorDeactivated;
+    public static void FireOnGeneratorDeactivated(int remaining)
+    {
+        OnGeneratorDeactivated?.Invoke(remaining);
+    }
+
+    public static event Action<Transform> OnPlayerCaughtByMonster;
+    public static void FireOnPlayerCaughtByMonster(Transform monsterTransform)
+    {
+        OnPlayerCaughtByMonster?.Invoke(monsterTransform);
+        OnPlayerCaught?.Invoke();
+    }
+
+    public static event Action OnMonsterChaseStart;
+    public static void FireOnMonsterChaseStart()
+    {
+        OnMonsterChaseStart?.Invoke();
+    }
+
+    public static event Action OnMonsterChaseEnd;
+    public static void FireOnMonsterChaseEnd()
+    {
+        OnMonsterChaseEnd?.Invoke();
+    }
+}

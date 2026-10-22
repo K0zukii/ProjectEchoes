@@ -1,0 +1,44 @@
+using UnityEngine;
+using UnityEngine.AI;
+
+public class EnemyNavigation : MonoBehaviour
+{
+    [SerializeField] private NavMeshAgent enemyNavMesh;
+
+    public Vector3 GetRandomDestination(Vector3 origin, float radius)
+    {
+        Vector3 randomDirection = Random.insideUnitSphere * radius;
+        randomDirection += origin;
+
+        Vector3 finalPosition = Vector3.zero;
+        if (NavMesh.SamplePosition(randomDirection, out NavMeshHit hit, radius, NavMesh.AllAreas))
+        {
+            finalPosition = hit.position;
+        }
+
+        return finalPosition;
+    }
+
+    public bool HasReachedDestination()
+    {
+        return enemyNavMesh.remainingDistance <= enemyNavMesh.stoppingDistance && !enemyNavMesh.pathPending;
+    }
+
+    public void MoveToPosition(Vector3 target)
+    {
+        enemyNavMesh.isStopped = false;
+        enemyNavMesh.SetDestination(target);
+    }
+
+    public void StopMoving()
+    {
+        enemyNavMesh.isStopped = true;
+        enemyNavMesh.ResetPath();
+        enemyNavMesh.velocity = Vector3.zero;
+    }
+
+    public void SetSpeed(float speed)
+    {
+        enemyNavMesh.speed = speed;
+    }
+}
